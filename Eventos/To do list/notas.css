@@ -1,0 +1,33 @@
+body{
+
+    background-color: rgb(28, 27, 27);
+}
+
+
+.crear_nota{
+    border-radius: 10px;
+    background-color: rgb(119, 128, 229);
+    padding: 10px;
+}
+
+h1{
+    color: white;
+    text-align: center;
+}
+.botones{
+    display: flex;
+    justify-content: center;
+}
+
+
+.form-check-label{
+    color: white;
+}
+
+
+.row{
+    background-color: rgb(119, 128, 229);
+    padding-top: 5px;
+    border-radius: 10px;
+
+}

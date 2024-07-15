@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    background-color: #f1f1f1;
+}
+
+.container {
+    border: solid 1px #c0c0c0;
+}
+
+
+.resultado{
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 10px;
+
+}
+
+.imc{
+    background-color: green;
+}
+
+.divisa{
+    background-color: red;
+}
