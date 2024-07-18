@@ -10,48 +10,37 @@ let notas = [
 // Inicializamos el idGlobal con el último id creado manualmente
 let idGlobal = 2;
 
-
-
-
-
 // Función para pintar las notas en el contenedor
 function pintarNotas(notas) {
-
     const contenedor = document.getElementById('contenedorNotas');
-    // Limpiamos el contenido del contenedor antes de pintar las notas para evitar duplicados
     contenedor.innerHTML = '';
 
-    // Si no hay notas, se muestra un mensaje en el contenedor y se termina la función
     if (notas.length === 0) {
-        // Se muestra un mensaje en el contenedor indicando que no hay notas.
         contenedor.innerHTML = '<p class="text-center">NO HAY NOTAS PARA MOSTRAR</p>';
         return;
     }
 
-    // Se recorre cada nota del array y se crea un div con la interfaz de la nota para cada una.
     notas.forEach(nota => {
-        // Se crea un div nuevo para cada nota y se le añade la clase 'card' para darle estilo de tarjeta.
         const notaDiv = document.createElement('div');
-        // Se añade la clase 'col-4 mb-3' para que las notas se muestren en columnas de 4 en ancho.
         notaDiv.className = 'col-4 mb-3';
-        // Se crea el HTML que representa la interfaz de la nota
+        
+        // Aplicar estilo de tachado si la nota está realizada
+        const estiloTachado = nota.realizada ? 'text-decoration: line-through;' : '';
+
         notaDiv.innerHTML = `
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">${nota.titulo}</h5>
-                    <p class="card-text">${nota.texto}</p>
+                    <p style="${estiloTachado}" class="card-text">${nota.texto}</p>
                     <input onClick="marcarRealizada(${nota.id})" type="checkbox" ${nota.realizada ? "checked" : ""}> Realizada
                     <button class="btn btn-danger btn-sm float-end" onClick="borrarNota(${nota.id})">Borrar Nota</button>
                 </div>
             </div>
         `;
-        // Se añade el div con la interfaz de la nota al contenedor de notas.
+        
         contenedor.appendChild(notaDiv);
     });
 }
-
-
-
 
 
 
@@ -96,72 +85,6 @@ function marcarRealizada(id) {
         pintarNotas(notas);
     }
 }
-// Función para pintar las notas en el contenedor
-function pintarNotas(notas) {
-    const contenedor = document.getElementById('contenedorNotas');
-    contenedor.innerHTML = '';
-
-    if (notas.length === 0) {
-        contenedor.innerHTML = '<p class="text-center">NO HAY NOTAS PARA MOSTRAR</p>';
-        return;
-    }
-
-    notas.forEach(nota => {
-        const notaDiv = document.createElement('div');
-        notaDiv.className = 'col-4 mb-3';
-        
-        // Aplicar estilo de tachado si la nota está realizada
-        const estiloTachado = nota.realizada ? 'text-decoration: line-through;' : '';
-
-        notaDiv.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${nota.titulo}</h5>
-                    <p style="${estiloTachado}" class="card-text">${nota.texto}</p>
-                    <input onClick="marcarRealizada(${nota.id})" type="checkbox" ${nota.realizada ? "checked" : ""}> Realizada
-                    <button class="btn btn-danger btn-sm float-end" onClick="borrarNota(${nota.id})">Borrar Nota</button>
-                </div>
-            </div>
-        `;
-        
-        contenedor.appendChild(notaDiv);
-    });
-}
-
-
-// Función para pintar las notas en el contenedor
-function pintarNotas(notas) {
-    const contenedor = document.getElementById('contenedorNotas');
-    contenedor.innerHTML = '';
-
-    if (notas.length === 0) {
-        contenedor.innerHTML = '<p class="text-center">NO HAY NOTAS PARA MOSTRAR</p>';
-        return;
-    }
-
-    notas.forEach(nota => {
-        const notaDiv = document.createElement('div');
-        notaDiv.className = 'col-4 mb-3';
-        
-        // Aplicar estilo de tachado si la nota está realizada
-        const estiloTachado = nota.realizada ? 'text-decoration: line-through;' : '';
-
-        notaDiv.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${nota.titulo}</h5>
-                    <p style="${estiloTachado}" class="card-text">${nota.texto}</p>
-                    <input onClick="marcarRealizada(${nota.id})" type="checkbox" ${nota.realizada ? "checked" : ""}> Realizada
-                    <button class="btn btn-danger btn-sm float-end" onClick="borrarNota(${nota.id})">Borrar Nota</button>
-                </div>
-            </div>
-        `;
-        
-        contenedor.appendChild(notaDiv);
-    });
-}
-
-
 
 
 
