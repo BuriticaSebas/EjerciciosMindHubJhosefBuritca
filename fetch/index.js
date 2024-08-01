@@ -52,12 +52,18 @@ function renderCards(data) {
     const contenedor = document.getElementById('content-cards');
     contenedor.innerHTML = '';
 
+    if (data.length === 0) {
+        contenedor.innerHTML = '<p class="no-results-message">No se encontraron resultados. Por favor intenta con otra búsqueda.</p>';
+        return;
+    }
+
     data.forEach(department => {
         const card = document.createElement('div');
         card.className = 'col-md-4 mb-4 department-card';
         card.innerHTML = `
             <div class="card h-100">
                 <div class="card-body">
+                    <img src="https://meitrackusa.com/wp-content/uploads/2023/05/Flag-map_of_Colombia.svg.png" alt="Imagen_ciudad">
                     <h5 class="card-title name">${department.name}</h5>
                     <p class="card-text">${department.description}</p>
                     <p class="card-text">Población: ${department.population}</p>

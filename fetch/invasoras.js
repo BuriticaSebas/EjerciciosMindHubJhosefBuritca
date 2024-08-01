@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchData() {
     try {
-        const response = await fetch('https://api-colombia.com/api/v1/InvasiveSpecie'); // Reemplaza con la URL de tu API
+        const response = await fetch('https://api-colombia.com/api/v1/InvasiveSpecie');
         const data = await response.json();
         generateTable(data);
     } catch (error) {
@@ -24,10 +24,13 @@ async function fetchData() {
 
 function generateTable(data) {
     const tableContainer = document.getElementById('table-container');
+    tableContainer.innerHTML = ''; // Clear any previous table
+
     const table = document.createElement('table');
     table.className = 'table table-striped table-hover';
     const thead = document.createElement('thead');
     const tbody = document.createElement('tbody');
+    tbody.id = 'table-body'; // Set an id for the tbody
 
     // Crear cabecera de la tabla
     const headerRow = document.createElement('tr');
@@ -62,13 +65,31 @@ function generateTable(data) {
 
 function filterTable(searchValue) {
     const rows = document.querySelectorAll('tbody tr');
+    let noMatches = true;
+
     rows.forEach(row => {
         const nameCell = row.querySelector('.name');
         const nameText = normalizeText(nameCell.textContent.toLowerCase());
         if (nameText.includes(searchValue)) {
             row.style.display = '';
+            noMatches = false;
         } else {
             row.style.display = 'none';
         }
     });
+
+    const tableBody = document.getElementById('table-body');
+    if (noMatches) {
+        const noResultsRow = document.createElement('tr');
+        noResultsRow.className = 'no-results';
+        noResultsRow.innerHTML = `
+            <td colspan="6" class="text-center">No se encontraron resultados. Por favor intenta con otra búsqueda.</td>
+        `;
+        tableBody.appendChild(noResultsRow);
+    } else {
+        const noResultsRow = document.querySelector('.no-results');
+        if (noResultsRow) {
+            noResultsRow.remove();
+        }
+    }
 }
